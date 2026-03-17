@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --accent-red: #e10600;
+  --bg-color: #f8f7f5;
+  --text-color: #1a1a1a;
+}
+
+@layer base {
+  html, body {
+    @apply w-full h-full m-0 p-0 bg-[#f8f7f5] text-[#1a1a1a] overflow-x-hidden;
+    font-family: 'Playfair Display', Georgia, serif;
+    cursor: none;
+  }
+
+  canvas {
+    @apply block;
+  }
+}
+
+/* Custom Utilities */
+.mix-blend-difference {
+  mix-blend-mode: difference;
+}
+
+/* Lenis CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

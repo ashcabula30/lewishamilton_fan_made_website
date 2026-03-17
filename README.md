@@ -32,8 +32,8 @@ A minimal, interactive single-page hero featuring a circular spotlight reveal ef
 ```
 ├── index.html              # Single-file landing page
 ├── images/
-│   ├── hamilton-portrait.png   # Base image (no helmet)
-│   └── hamilton-helmet.png     # Reveal image (with helmet)
+│   ├── hamilton-ferrari-portrait.png   # Base image (no helmet)
+│   └── hamilton-ferrari-helmet.png     # Reveal image (with Ferrari helmet)
 └── README.md
 ```
 

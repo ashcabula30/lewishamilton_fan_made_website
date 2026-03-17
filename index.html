@@ -20,6 +20,7 @@
     :root {
       --cursor-size: 160px;
       --echo-size: 160px;
+      --accent-red: #e10600;
     }
 
     html,
@@ -176,6 +177,11 @@
       transition: color 0.3s ease;
     }
 
+    .name-block:hover .first,
+    .name-block:hover .last {
+      color: var(--accent-red);
+    }
+
     .nav-link {
       position: absolute;
       top: 56px;
@@ -204,6 +210,10 @@
       height: 1px;
       background: currentColor;
       transition: width 0.4s ease;
+    }
+
+    .nav-link a:hover {
+      color: var(--accent-red);
     }
 
     .nav-link a:hover::after {
@@ -241,18 +251,22 @@
       transition: fill 0.3s ease;
     }
 
+    .social-icons a:hover svg {
+      fill: var(--accent-red);
+    }
+
     /* Inverted state (when spotlight is over text) */
     .name-block.inverted .first,
     .name-block.inverted .last {
-      color: #ffffff;
+      color: var(--accent-red);
     }
 
     .nav-link.inverted a {
-      color: #ffffff;
+      color: var(--accent-red);
     }
 
     .social-icons.inverted svg {
-      fill: #ffffff;
+      fill: var(--accent-red);
     }
 
     /* Subtle vignette */
@@ -279,7 +293,7 @@
     }
 
     .tagline.inverted {
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--accent-red);
     }
 
     /* Loading screen */

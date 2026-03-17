@@ -7,10 +7,15 @@ import ferrariModelPath from '../assets/scuderia_ferrari_hp_2026_concept.glb';
 const FerrariModel: React.FC = () => {
   const { scene } = useGLTF(ferrariModelPath);
   const meshRef = useRef<THREE.Group>(null);
+  const baseRotationX = 0.10;
+  const baseRotationY = -Math.PI / 2.0;
+  const baseRotationZ = -0.15;
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.3) * 0.1;
+      meshRef.current.rotation.x = baseRotationX;
+      meshRef.current.rotation.y = baseRotationY + Math.sin(state.clock.getElapsedTime() * 0.3) * 0.08;
+      meshRef.current.rotation.z = baseRotationZ + Math.sin(state.clock.getElapsedTime() * 0.9) * 0.02;
     }
   });
 
@@ -19,9 +24,9 @@ const FerrariModel: React.FC = () => {
       <primitive 
         ref={meshRef}
         object={scene} 
-        scale={12.0} 
-        position={[4, -4, -10]} 
-        rotation={[0, -Math.PI / 6, 0]}
+        scale={75.0} 
+        position={[0, -0.4, 0]} 
+        rotation={[baseRotationX, baseRotationY, baseRotationZ]}
       />
     </Float>
   );
@@ -30,14 +35,14 @@ const FerrariModel: React.FC = () => {
 const ThreeScene: React.FC = () => {
   return (
     <div className="absolute inset-0 z-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+      <Canvas camera={{ position: [0, 0.2, 13], fov: 52 }}>
         <ambientLight intensity={2.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={4} />
         <pointLight position={[-10, -10, -10]} intensity={2} />
         <Suspense fallback={null}>
           <FerrariModel />
           <Environment preset="city" />
-          <ContactShadows position={[0, -5, 0]} opacity={0.4} scale={40} blur={2.5} far={4.5} />
+          <ContactShadows position={[0, -3.2, 0]} opacity={0.4} scale={50} blur={2.5} far={10} />
         </Suspense>
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>

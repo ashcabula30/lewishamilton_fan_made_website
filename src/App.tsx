@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loader from './components/Loader';
 import AnimatedGrid from './components/AnimatedGrid';
+import BlobCursor from './components/BlobCursor';
 import HyperspeedBackground from './components/HyperspeedBackground';
 import Hero from './sections/Hero';
 import ThreeScene from './three/Scene';
@@ -21,6 +22,25 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen isolate overflow-x-hidden">
       <HyperspeedBackground />
+      <BlobCursor
+        trailCount={4}
+        sizes={[240, 200, 152, 104]}
+        innerSizes={[88, 64, 42, 28]}
+        opacities={[1, 0.8, 0.62, 0.46]}
+        fillColor="rgba(212, 175, 55, 0.25)"
+        innerColor="#d4cece"
+        shadowColor="#ecdeac"
+        shadowBlur={18}
+        shadowOffsetX={37}
+        shadowOffsetY={18}
+        filterStdDeviation={42}
+        filterColorMatrixValues="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 42 -14"
+        slowDuration={0.82}
+        fastDuration={0.48}
+        fastEase="power2.out"
+        slowEase="power1.out"
+        zIndex={-20}
+      />
       <Loader isLoading={isLoading} />
       
       <main className={`relative z-0 ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}>

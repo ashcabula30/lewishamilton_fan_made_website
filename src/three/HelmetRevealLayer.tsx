@@ -13,11 +13,21 @@ const HelmetRevealLayer: React.FC<HelmetRevealLayerProps> = ({ mouse }) => {
   const revealY = hasMouse ? `${mouse.y}px` : '-240px';
 
   const maskStyle = useMemo(
-    () =>
-      ({
-        WebkitMaskImage: `radial-gradient(circle 180px at ${revealX} ${revealY}, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 92px, rgba(0,0,0,0.72) 132px, rgba(0,0,0,0.22) 176px, rgba(0,0,0,0) 230px)`,
-        maskImage: `radial-gradient(circle 180px at ${revealX} ${revealY}, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 92px, rgba(0,0,0,0.72) 132px, rgba(0,0,0,0.22) 176px, rgba(0,0,0,0) 230px)`,
-      }) satisfies React.CSSProperties,
+    () => {
+      const blobMask = [
+        `radial-gradient(ellipse 220px 190px at ${revealX} ${revealY}, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 42%, rgba(0,0,0,0.84) 58%, rgba(0,0,0,0.34) 76%, rgba(0,0,0,0) 100%)`,
+        `radial-gradient(circle 150px at calc(${revealX} - 92px) calc(${revealY} + 38px), rgba(0,0,0,0.98) 0px, rgba(0,0,0,0.98) 48%, rgba(0,0,0,0.38) 74%, rgba(0,0,0,0) 100%)`,
+        `radial-gradient(circle 122px at calc(${revealX} + 104px) calc(${revealY} - 24px), rgba(0,0,0,0.95) 0px, rgba(0,0,0,0.95) 44%, rgba(0,0,0,0.34) 72%, rgba(0,0,0,0) 100%)`,
+        `radial-gradient(circle 88px at calc(${revealX} - 128px) calc(${revealY} - 52px), rgba(0,0,0,0.78) 0px, rgba(0,0,0,0.78) 44%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)`,
+      ].join(', ');
+
+      return {
+        WebkitMaskImage: blobMask,
+        maskImage: blobMask,
+        WebkitMaskRepeat: 'no-repeat',
+        maskRepeat: 'no-repeat',
+      } satisfies React.CSSProperties;
+    },
     [revealX, revealY]
   );
 

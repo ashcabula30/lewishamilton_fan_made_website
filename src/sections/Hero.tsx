@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { useMousePosition } from '../hooks/useMousePosition';
+import { useBlobCursorPosition } from '../hooks/useBlobCursorPosition';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import depthMap from '../assets/new-hamilton-portrait-depth.png';
@@ -9,6 +10,7 @@ import HelmetRevealLayer from '../three/HelmetRevealLayer';
 
 const Hero: React.FC = () => {
   const mouse = useMousePosition();
+  const blobCursor = useBlobCursorPosition();
 
   return (
     <div className="relative w-screen h-[100svh] overflow-hidden bg-transparent">
@@ -45,7 +47,7 @@ const Hero: React.FC = () => {
           </Canvas>
         </div>
       </div>
-      <HelmetRevealLayer mouse={mouse} />
+      <HelmetRevealLayer mouse={blobCursor} />
 
       {/* UI Elements Layer */}
       <div className="absolute inset-0 z-10 pointer-events-none px-8 sm:px-12 lg:px-16 py-10 sm:py-12 flex flex-col justify-between h-full text-[#0c0c0c]">

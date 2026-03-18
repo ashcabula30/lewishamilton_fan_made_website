@@ -138,10 +138,10 @@ const fragmentShader = /* glsl */ `
     float bottom = smoothstep(0.0, 0.12, vUv.y);
     a *= bottom;
 
-    // Soft side feather to prevent visible vertical cutoffs at texture bounds
-    float edge = 0.095;
-    float side = smoothstep(0.0, edge, vUv.x) * smoothstep(0.0, edge, 1.0 - vUv.x);
-    a *= side;
+    // Asymmetric side feather to hide the rough left-side crop without over-softening the right edge
+    float leftFeather = smoothstep(0.02, 0.18, uv.x);
+    float rightFeather = smoothstep(0.0, 0.07, 1.0 - uv.x);
+    a *= leftFeather * rightFeather;
 
     gl_FragColor = vec4(rgb, a);
   }
@@ -208,7 +208,7 @@ export const CinematicDepthPortrait: React.FC<Props> = ({
   });
 
   return (
-    <mesh scale={scale}>
+    <mesh scale={scale} renderOrder={1}>
       <planeGeometry args={[1, 1, 160, 160]} />
       <shaderMaterial
         ref={materialRef}
@@ -216,10 +216,10 @@ export const CinematicDepthPortrait: React.FC<Props> = ({
         fragmentShader={fragmentShader}
         uniforms={uniforms}
         transparent={true}
+        depthTest={true}
         depthWrite={false}
         toneMapped={false}
       />
     </mesh>
   );
 };
-

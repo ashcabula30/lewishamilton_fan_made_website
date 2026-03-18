@@ -2,9 +2,11 @@ import React, { useRef, useEffect, Suspense } from 'react';
 import { useMousePosition } from '../hooks/useMousePosition';
 import gsap from 'gsap';
 import { Canvas } from '@react-three/fiber';
+import { Environment } from '@react-three/drei';
 import depthMap from '../assets/new-hamilton-portrait-depth.png';
 import portraitImg from '../assets/new-hamilton-portrait.png';
 import { CinematicDepthPortrait } from '../three/CinematicDepthPortrait';
+import HeroHelmet from '../three/HeroHelmet';
 
 const Hero: React.FC = () => {
   const mouse = useMousePosition();
@@ -37,12 +39,15 @@ const Hero: React.FC = () => {
           <div className="absolute inset-0 rounded-[999px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.25)_0%,rgba(255,255,255,0.0)_60%)] blur-[46px] opacity-45" />
         </div>
 
-        <div className="h-[104svh] w-[min(74vh,92vw)] -translate-y-[2.5vh] select-none">
+        <div className="h-[104svh] w-[min(70vh,90vw)] -translate-y-[0.5vh] select-none pointer-events-auto">
           <Canvas
             gl={{ antialias: true, alpha: true }}
             camera={{ position: [0, 0, 1.65], fov: 38 }}
             dpr={[1, 2]}
           >
+            <ambientLight intensity={1.7} />
+            <directionalLight position={[1.5, 2, 3]} intensity={2.3} />
+            <directionalLight position={[-2, 1, 1.5]} intensity={0.7} color="#ffe6d0" />
             <Suspense fallback={null}>
               <group position={[-0.06, 0.02, 0]}>
                 <CinematicDepthPortrait
@@ -54,6 +59,8 @@ const Hero: React.FC = () => {
                   mouse={mouse}
                 />
               </group>
+              <HeroHelmet />
+              <Environment preset="studio" />
             </Suspense>
           </Canvas>
         </div>

@@ -45,9 +45,9 @@ const HeroHelmet: React.FC = () => {
 
     groupRef.current.renderOrder = 50;
     groupRef.current.visible = true;
-    groupRef.current.position.set(0.02, 0.1, 0.9);
+    groupRef.current.position.set(-0.03, 0.08, 0.9);
     groupRef.current.scale.setScalar(0.25 * fitScale);
-    groupRef.current.rotation.set(0, 0, 0);
+    groupRef.current.rotation.set(0.1, 3.1, 0);
   });
 
   return (

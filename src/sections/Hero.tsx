@@ -1,38 +1,19 @@
-import React, { useRef, useEffect, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useMousePosition } from '../hooks/useMousePosition';
-import gsap from 'gsap';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import depthMap from '../assets/new-hamilton-portrait-depth.png';
 import portraitImg from '../assets/new-hamilton-portrait.png';
 import { CinematicDepthPortrait } from '../three/CinematicDepthPortrait';
-import HeroHelmet from '../three/HeroHelmet';
+import HelmetRevealLayer from '../three/HelmetRevealLayer';
 
 const Hero: React.FC = () => {
   const mouse = useMousePosition();
-  const baseLayerRef = useRef<HTMLDivElement>(null);
-  const uiLayerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Parallax effect
-    const handleParallax = () => {
-      const cx = (mouse.x / window.innerWidth - 0.5) * 2;
-      const cy = (mouse.y / window.innerHeight - 0.5) * 2;
-
-      gsap.to(baseLayerRef.current, { x: -cx * 15, y: -cy * 15, duration: 0.6, ease: 'power2.out' });
-      gsap.to(uiLayerRef.current, { x: -cx * 6, y: -cy * 6, duration: 0.6, ease: 'power2.out' });
-    };
-
-    handleParallax();
-  }, [mouse]);
 
   return (
     <div className="relative w-screen h-[100svh] overflow-hidden bg-transparent">
       {/* Base Layer */}
-      <div 
-        ref={baseLayerRef}
-        className="absolute inset-0 z-1 flex justify-center items-center pointer-events-none will-change-transform"
-      >
+      <div className="absolute inset-0 z-[1] flex justify-center items-center pointer-events-none">
         {/* Subtle separation behind the subject (no obvious glow) */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[52%] w-[min(62vh,78vw)] h-[min(82vh,92vw)] pointer-events-none">
           <div className="absolute inset-0 rounded-[999px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.14)_0%,rgba(0,0,0,0.06)_35%,rgba(0,0,0,0.0)_70%)] blur-[34px] opacity-70" />
@@ -59,15 +40,15 @@ const Hero: React.FC = () => {
                   mouse={mouse}
                 />
               </group>
-              <HeroHelmet />
               <Environment preset="studio" />
             </Suspense>
           </Canvas>
         </div>
       </div>
+      <HelmetRevealLayer mouse={mouse} />
 
       {/* UI Elements Layer */}
-      <div ref={uiLayerRef} className="absolute inset-0 z-10 pointer-events-none px-8 sm:px-12 lg:px-16 py-10 sm:py-12 flex flex-col justify-between h-full text-[#0c0c0c]">
+      <div className="absolute inset-0 z-10 pointer-events-none px-8 sm:px-12 lg:px-16 py-10 sm:py-12 flex flex-col justify-between h-full text-[#0c0c0c]">
         <div className="flex justify-between items-start pointer-events-auto">
           <div className="group cursor-pointer">
             <p className="text-[0.75rem] tracking-[0.28em] uppercase opacity-60">Scuderia Era</p>
@@ -123,7 +104,7 @@ const Hero: React.FC = () => {
 
       {/* Vignette */}
       <div className="absolute inset-0 z-[4] pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(248,247,245,0.0)_20%,rgba(248,247,245,0.55)_100%)]" />
-      <div className="absolute inset-0 z-[3] pointer-events-none bg-[linear-gradient(to_bottom,rgba(248,247,245,0.65)_0%,rgba(248,247,245,0.0)_38%,rgba(248,247,245,0.25)_100%)]" />
+      <div className="absolute inset-0 z-[3] pointer-events-none bg-[linear-gradient(to_bottom,rgba(248,247,245,0.72)_0%,rgba(248,247,245,0.05)_28%,rgba(248,247,245,0.24)_100%)]" />
     </div>
   );
 };

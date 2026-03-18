@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
 import AnimatedGrid from './components/AnimatedGrid';
+import HyperspeedBackground from './components/HyperspeedBackground';
 import Hero from './sections/Hero';
 import ThreeScene from './three/Scene';
 import { useLenis } from './hooks/useLenis';
@@ -19,11 +19,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen isolate overflow-x-hidden">
+      <HyperspeedBackground />
       <Loader isLoading={isLoading} />
-      <CustomCursor />
       
-      <main className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}>
+      <main className={`relative z-0 ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}>
         <AnimatedGrid />
         <ThreeScene />
         <Hero />

@@ -60,7 +60,7 @@ const AnimatedGrid: React.FC = () => {
   }, [mouse]);
 
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none">
+    <div className="absolute inset-0 z-[-20] pointer-events-none">
       <canvas ref={canvasRef} className="w-full h-full block" />
     </div>
   );

@@ -49,7 +49,7 @@ const CinematicCameraRig: React.FC = () => {
 const ThreeScene: React.FC = () => {
   return (
     <div
-      className="absolute inset-0 z-0 pointer-events-none"
+      className="absolute inset-0 z-[-10] pointer-events-none"
       style={{ filter: 'saturate(0.9) brightness(0.96) contrast(0.96)', opacity: 0.9 }}
     >
       <Canvas camera={{ position: [0, 0.2, 13], fov: 52 }}>

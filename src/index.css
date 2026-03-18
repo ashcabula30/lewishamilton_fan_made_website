@@ -10,7 +10,6 @@
   html, body {
     @apply w-full h-full m-0 p-0 bg-[#f8f7f5] text-[#1a1a1a] overflow-x-hidden;
     font-family: 'Playfair Display', Georgia, serif;
-    cursor: none;
   }
 
   canvas {

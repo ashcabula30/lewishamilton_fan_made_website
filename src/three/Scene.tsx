@@ -1,6 +1,6 @@
 import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Float, useGLTF, Environment, ContactShadows } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import ferrariModelPath from '../assets/scuderia_ferrari_hp_2026_concept.glb';
 
@@ -10,25 +10,25 @@ const FerrariModel: React.FC = () => {
   const baseRotationX = 0.10;
   const baseRotationY = -Math.PI / 2.0;
   const baseRotationZ = -0.15;
+  const showcaseSpinSpeed = 0.28;
 
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = baseRotationX;
-      meshRef.current.rotation.y = baseRotationY + Math.sin(state.clock.getElapsedTime() * 0.3) * 0.08;
-      meshRef.current.rotation.z = baseRotationZ + Math.sin(state.clock.getElapsedTime() * 0.9) * 0.02;
+      meshRef.current.rotation.y = baseRotationY + state.clock.getElapsedTime() * showcaseSpinSpeed;
+      meshRef.current.rotation.z = baseRotationZ;
+      meshRef.current.position.set(0, -0.4, 0);
     }
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-      <primitive 
-        ref={meshRef}
-        object={scene} 
-        scale={75.0} 
-        position={[0, -0.4, 0]} 
-        rotation={[baseRotationX, baseRotationY, baseRotationZ]}
-      />
-    </Float>
+    <primitive
+      ref={meshRef}
+      object={scene}
+      scale={75.0}
+      position={[0, -0.4, 0]}
+      rotation={[baseRotationX, baseRotationY, baseRotationZ]}
+    />
   );
 };
 

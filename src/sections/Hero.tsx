@@ -5,10 +5,15 @@ import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import depthMap from '../assets/new-hamilton-portrait-depth.png';
 import portraitImg from '../assets/new-hamilton-portrait.png';
+import SplitTextReveal from '../components/SplitTextReveal';
 import { CinematicDepthPortrait } from '../three/CinematicDepthPortrait';
 import HelmetRevealLayer from '../three/HelmetRevealLayer';
 
-const Hero: React.FC = () => {
+type HeroProps = {
+  playTitleAnimation?: boolean;
+};
+
+const Hero: React.FC<HeroProps> = ({ playTitleAnimation = true }) => {
   const mouse = useMousePosition();
   const blobCursor = useBlobCursorPosition();
 
@@ -54,12 +59,21 @@ const Hero: React.FC = () => {
         <div className="flex justify-between items-start pointer-events-auto">
           <div className="group cursor-pointer">
             <p className="text-[0.75rem] tracking-[0.28em] uppercase opacity-60">Scuderia Era</p>
-            <h1 className="mt-3 text-[2.4rem] sm:text-[3.0rem] font-normal tracking-wider leading-none transition-colors duration-300 group-hover:text-[var(--accent-red)]">
-              Lewis
-            </h1>
-            <h1 className="text-[2.55rem] sm:text-[3.15rem] font-bold tracking-[0.10em] leading-[1.02] transition-colors duration-300 group-hover:text-[var(--accent-red)]">
-              HAMILTON
-            </h1>
+            <SplitTextReveal
+              as="h1"
+              text="Lewis"
+              play={playTitleAnimation}
+              className="mt-3 text-[2.4rem] sm:text-[3.0rem] font-normal tracking-wider leading-none transition-colors duration-300 group-hover:text-[var(--accent-red)]"
+              stagger={46}
+            />
+            <SplitTextReveal
+              as="h1"
+              text="HAMILTON"
+              play={playTitleAnimation}
+              className="text-[2.55rem] sm:text-[3.15rem] font-bold tracking-[0.10em] leading-[1.02] transition-colors duration-300 group-hover:text-[var(--accent-red)]"
+              delay={120}
+              stagger={34}
+            />
           </div>
           <a 
             href="https://www.formula1.com/en/drivers/lewis-hamilton" 

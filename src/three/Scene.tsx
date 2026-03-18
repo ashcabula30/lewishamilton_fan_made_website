@@ -60,7 +60,13 @@ const ThreeScene: React.FC = () => {
         <Suspense fallback={null}>
           <FerrariModel />
           <Environment preset="city" />
-          <ContactShadows position={[0, -3.2, 0]} opacity={0.4} scale={50} blur={2.5} far={10} />
+          <ContactShadows
+            position={[0, -0.30, 0]}
+            opacity={0.26}
+            scale={24}
+            blur={1.8}
+            far={6}
+          />
         </Suspense>
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>

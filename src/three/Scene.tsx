@@ -32,10 +32,28 @@ const FerrariModel: React.FC = () => {
   );
 };
 
+const CinematicCameraRig: React.FC = () => {
+  // Subtle background motion slower than portrait
+  useFrame((state, dt) => {
+    const { camera, pointer } = state;
+    const tx = pointer.x * 0.35;
+    const ty = pointer.y * 0.18;
+
+    camera.position.x = THREE.MathUtils.damp(camera.position.x, tx, 2.6, dt);
+    camera.position.y = THREE.MathUtils.damp(camera.position.y, 0.2 + ty, 2.6, dt);
+    camera.lookAt(0, 0, 0);
+  });
+  return null;
+};
+
 const ThreeScene: React.FC = () => {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none">
+    <div
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{ filter: 'saturate(0.9) brightness(0.96) contrast(0.96)', opacity: 0.9 }}
+    >
       <Canvas camera={{ position: [0, 0.2, 13], fov: 52 }}>
+        <CinematicCameraRig />
         <ambientLight intensity={2.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={4} />
         <pointLight position={[-10, -10, -10]} intensity={2} />

@@ -7,9 +7,9 @@ import ferrariModelPath from '../assets/scuderia_ferrari_hp_2026_concept.glb';
 const FerrariModel: React.FC = () => {
   const { scene } = useGLTF(ferrariModelPath);
   const meshRef = useRef<THREE.Group>(null);
-  const baseRotationX = 0.10;
+  const baseRotationX = 0;
   const baseRotationY = -Math.PI / 2.0;
-  const baseRotationZ = -0.15;
+  const baseRotationZ = 0;
   const showcaseSpinSpeed = 0.28;
 
   useFrame((state) => {

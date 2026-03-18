@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loader from './components/Loader';
-import AnimatedGrid from './components/AnimatedGrid';
 import BlobCursor from './components/BlobCursor';
+import GridDotsBackground from './components/GridDotsBackground';
 import HyperspeedBackground from './components/HyperspeedBackground';
 import ScrollRevealText from './components/ScrollRevealText';
 import Hero from './sections/Hero';
@@ -46,6 +46,7 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen isolate overflow-x-hidden">
       <HyperspeedBackground />
+      <GridDotsBackground />
       <BlobCursor
         trailCount={4}
         sizes={[240, 200, 152, 104]}
@@ -68,7 +69,6 @@ const App: React.FC = () => {
       <Loader isLoading={isLoading} />
       
       <main className={`relative z-0 ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}>
-        <AnimatedGrid />
         <ThreeScene />
         <Hero playTitleAnimation={playHeroTitleAnimation} playHelmetReveal={playHelmetReveal} />
         

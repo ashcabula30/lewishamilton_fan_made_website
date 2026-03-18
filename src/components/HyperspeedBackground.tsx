@@ -4,7 +4,7 @@ import { hyperspeedPresets } from './reactbits/HyperSpeedPresets';
 
 const HyperspeedBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-[-30] overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 z-[-20] overflow-hidden pointer-events-none">
       <div className="absolute inset-0 opacity-95">
         <Hyperspeed effectOptions={hyperspeedPresets.three} />
       </div>

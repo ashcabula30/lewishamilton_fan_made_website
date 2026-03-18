@@ -11,6 +11,7 @@ import { useLenis } from './hooks/useLenis';
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [playHeroTitleAnimation, setPlayHeroTitleAnimation] = useState(false);
+  const [playHelmetReveal, setPlayHelmetReveal] = useState(false);
   useLenis();
 
   useEffect(() => {
@@ -24,14 +25,22 @@ const App: React.FC = () => {
   useEffect(() => {
     if (isLoading) {
       setPlayHeroTitleAnimation(false);
+      setPlayHelmetReveal(false);
       return;
     }
 
-    const timer = setTimeout(() => {
+    const titleTimer = setTimeout(() => {
       setPlayHeroTitleAnimation(true);
     }, 900);
 
-    return () => clearTimeout(timer);
+    const helmetTimer = setTimeout(() => {
+      setPlayHelmetReveal(true);
+    }, 1000);
+
+    return () => {
+      clearTimeout(titleTimer);
+      clearTimeout(helmetTimer);
+    };
   }, [isLoading]);
 
   return (
@@ -61,7 +70,7 @@ const App: React.FC = () => {
       <main className={`relative z-0 ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}>
         <AnimatedGrid />
         <ThreeScene />
-        <Hero playTitleAnimation={playHeroTitleAnimation} />
+        <Hero playTitleAnimation={playHeroTitleAnimation} playHelmetReveal={playHelmetReveal} />
         
         {/* Additional content can go here for scrolling */}
         <section className="relative z-10 min-h-[70vh] flex items-center justify-center px-6 py-24 sm:px-10 lg:px-20 bg-transparent text-[#1a1a1a]">

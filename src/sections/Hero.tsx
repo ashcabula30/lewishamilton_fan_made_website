@@ -8,12 +8,14 @@ import portraitImg from '../assets/new-hamilton-portrait.png';
 import SplitTextReveal from '../components/SplitTextReveal';
 import { CinematicDepthPortrait } from '../three/CinematicDepthPortrait';
 import HelmetRevealLayer from '../three/HelmetRevealLayer';
+import HelmetWireframeLayer from '../three/HelmetWireframeLayer';
 
 type HeroProps = {
   playTitleAnimation?: boolean;
+  playHelmetReveal?: boolean;
 };
 
-const Hero: React.FC<HeroProps> = ({ playTitleAnimation = true }) => {
+const Hero: React.FC<HeroProps> = ({ playTitleAnimation = true, playHelmetReveal = true }) => {
   const mouse = useMousePosition();
   const blobCursor = useBlobCursorPosition();
 
@@ -52,6 +54,7 @@ const Hero: React.FC<HeroProps> = ({ playTitleAnimation = true }) => {
           </Canvas>
         </div>
       </div>
+      <HelmetWireframeLayer mouse={blobCursor} revealEnabled={playHelmetReveal} />
       <HelmetRevealLayer mouse={blobCursor} />
 
       {/* UI Elements Layer */}

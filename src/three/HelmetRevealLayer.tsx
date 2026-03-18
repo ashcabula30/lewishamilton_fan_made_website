@@ -32,7 +32,7 @@ const HelmetRevealLayer: React.FC<HelmetRevealLayerProps> = ({ mouse }) => {
   );
 
   return (
-    <div className="absolute inset-0 z-[2] pointer-events-none" style={maskStyle}>
+    <div className="absolute inset-0 z-[3] pointer-events-none" style={maskStyle}>
       <Canvas
         gl={{ antialias: true, alpha: true }}
         camera={{ position: [0, 0, 1.65], fov: 38 }}
@@ -42,7 +42,7 @@ const HelmetRevealLayer: React.FC<HelmetRevealLayerProps> = ({ mouse }) => {
         <directionalLight position={[1.8, 2.5, 3.5]} intensity={0.95} color="#f5efe2" />
         <directionalLight position={[-1.6, 1.1, 1.8]} intensity={0.28} color="#ffd8c4" />
         <Suspense fallback={null}>
-          <HeroHelmet mouse={mouse} />
+          <HeroHelmet mouse={mouse} showSolid showWireframe={false} />
           <Environment preset="studio" environmentIntensity={0.32} />
         </Suspense>
       </Canvas>

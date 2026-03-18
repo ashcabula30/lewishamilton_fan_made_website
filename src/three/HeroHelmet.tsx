@@ -41,8 +41,9 @@ const HeroHelmet: React.FC<HeroHelmetProps> = ({ mouse }) => {
         clonedMaterial.opacity = 1;
         clonedMaterial.depthWrite = true;
         clonedMaterial.depthTest = true;
-        clonedMaterial.envMapIntensity = 0.8;
-        clonedMaterial.roughness = Math.max(clonedMaterial.roughness, 0.18);
+        clonedMaterial.envMapIntensity = 0.42;
+        clonedMaterial.roughness = Math.max(clonedMaterial.roughness, 0.28);
+        clonedMaterial.metalness = Math.min(clonedMaterial.metalness, 0.72);
         clonedMaterial.needsUpdate = true;
 
         return clonedMaterial;

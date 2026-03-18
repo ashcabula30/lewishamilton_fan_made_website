@@ -38,12 +38,12 @@ const HelmetRevealLayer: React.FC<HelmetRevealLayerProps> = ({ mouse }) => {
         camera={{ position: [0, 0, 1.65], fov: 38 }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={1.15} />
-        <directionalLight position={[1.8, 2.5, 3.5]} intensity={1.6} />
-        <directionalLight position={[-1.6, 1.1, 1.8]} intensity={0.4} color="#ffd8c4" />
+        <ambientLight intensity={0.72} />
+        <directionalLight position={[1.8, 2.5, 3.5]} intensity={0.95} color="#f5efe2" />
+        <directionalLight position={[-1.6, 1.1, 1.8]} intensity={0.28} color="#ffd8c4" />
         <Suspense fallback={null}>
           <HeroHelmet mouse={mouse} />
-          <Environment preset="studio" environmentIntensity={0.55} />
+          <Environment preset="studio" environmentIntensity={0.32} />
         </Suspense>
       </Canvas>
     </div>

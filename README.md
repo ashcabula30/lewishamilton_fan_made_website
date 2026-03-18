@@ -1,42 +1,71 @@
-# Lewis Hamilton — Portfolio Landing Page
+# Lewis Hamilton Fan-Made Website
 
-A minimal, interactive single-page hero featuring a circular spotlight reveal effect, parallax motion, and animated grid background.
+An interactive fan-made Lewis Hamilton landing page built with React, TypeScript, Vite, and Three.js. The experience combines a cinematic portrait treatment, animated background motion, and a stylized 3D helmet wireframe reveal.
 
-## Features
+## Stack
 
-- **Spotlight Reveal** — A circular cursor mask reveals an alternate portrait (helmet on) beneath the base image
-- **Motion Echoes** — Fast cursor movement spawns soft, fading ring echoes
-- **Animated Grid** — Subtle background grid that reacts to cursor position
-- **Dynamic Text Inversion** — UI text inverts to white when the spotlight passes over it
-- **Light Parallax** — Elements shift slightly opposite to cursor movement
-- **Responsive** — Falls back gracefully on mobile (no cursor effects)
+- React 19
+- TypeScript
+- Vite
+- Three.js
+- React Three Fiber
+- Drei
+- GSAP
+- Lenis
 
-## Hosting on GitHub Pages
+## Highlights
 
-1. Create a new GitHub repository
-2. Push this folder's contents to the `main` branch:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   git push -u origin main
-   ```
-3. Go to **Settings → Pages** in your repo
-4. Under **Source**, select `Deploy from a branch` → `main` → `/ (root)`
-5. Your site will be live at `https://YOUR_USERNAME.github.io/YOUR_REPO/`
+- Cinematic hero section with layered depth and cursor-reactive motion
+- 3D Lewis Hamilton helmet presentation using a GLB model
+- Animated wireframe effect with timed reveal and exit behavior
+- Hyperspeed-inspired animated background treatment
+- Scroll-based text reveals and ambient UI motion
 
-## File Structure
+## Getting Started
 
+Install dependencies:
+
+```bash
+npm install
 ```
-├── index.html              # Single-file landing page
-├── images/
-│   ├── hamilton-ferrari-portrait.png   # Base image (no helmet)
-│   └── hamilton-ferrari-helmet.png     # Reveal image (with Ferrari helmet)
-└── README.md
+
+Start the development server:
+
+```bash
+npm run dev
 ```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```text
+src/
+  components/    Reusable UI and motion components
+  hooks/         Cursor and scroll behavior hooks
+  sections/      Page sections such as the hero
+  three/         Three.js / React Three Fiber scene code
+  assets/        Local images and GLB assets
+```
+
+## Notes
+
+- This project is a fan-made, unofficial creative work.
+- Lewis Hamilton, Formula 1, team marks, photographs, and 3D assets may belong to their respective owners.
+- If you plan to publish or redistribute this project, verify that you have permission to use every third-party asset included in `src/assets/`.
 
 ## License
 
-Images are used for personal/portfolio purposes only. All rights to the photographs belong to their respective owners.
+This repository is distributed under an `All Rights Reserved` copyright notice for the original code, layout, and custom project-specific creative work in this repo, except for any third-party assets or trademarks.
+
+See [LICENSE](/c:/Users/ash.cabula/Downloads/lewishamilton_fan_made_website/LICENSE).
